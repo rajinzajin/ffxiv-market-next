@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --bg-ffxiv-opacity: 0.9;
+  --rgb-primary: 32, 36, 66;
+  --rgb-secondary: 37, 41, 74;
+  --color-primary: rgb(var(--rgb-primary));
+  --color-secondary: rgb(var(--rgb-secondary));
+
+  --color-highlight-1: rgb(37, 99, 235);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +25,18 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
+  background: var(--color-primary);
+}
+
+#sidebar {
+  background-image: linear-gradient(rgba(var(--rgb-primary), var(--bg-ffxiv-opacity)), rgba(var(--rgb-primary), var(--bg-ffxiv-opacity))), url(/img/tiny/ffxiv-2.jpg);
+  background-position: 73% 15%;
+}
+
+.bg-custom-ffxiv {
+  background-image: linear-gradient(rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity)), rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity))), url(/img/tiny/ffxiv.webp);
+  background-position: 55% 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
