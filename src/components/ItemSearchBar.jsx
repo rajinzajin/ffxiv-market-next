@@ -6,6 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import marketable_item from "@/data/marketable_items.json";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ItemSearchBar(props) {
 	const [searchResult, setSearchResult] = useState([]);
@@ -52,8 +53,8 @@ export default function ItemSearchBar(props) {
 											key={item._id}
 											className="group h-auto cursor-pointer font-body font-bold text-gray-300"
 										>
-											<a
-												href="/market?dc={main_data_center}&item={item._id}"
+											<Link
+												href={`/market/Materia/${item._id}`}
 												className="flex m-auto group-hover:bg-higlight-1 py-2 rounded-lg"
 											>
 												<Image
@@ -66,7 +67,7 @@ export default function ItemSearchBar(props) {
 												<div className="flex-1 h-full ml-3 my-auto group-hover:text-white">
 													{item.en}
 												</div>
-											</a>
+											</Link>
 										</li>
 									);
 								})}
