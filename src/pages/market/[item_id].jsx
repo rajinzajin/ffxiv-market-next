@@ -2,15 +2,8 @@ import ItemSearchBar from "@/components/ItemSearchBar";
 import { getItem } from "@/database/item_db";
 import { getItemImageUrl } from "@/lib/item_utils";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function Market(props) {
-	const router = useRouter();
-	const { dc, item_id } = router.query;
-	useEffect(() => {
-		console.log(props.item);
-	}, [props.item]);
 	return (
 		<div>
 			<div className="grid grid-cols-12 gap-y-6 gap-x-4">
