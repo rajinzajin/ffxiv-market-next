@@ -4,7 +4,7 @@ import Link from 'next/link'
 import NextNProgress from 'nextjs-progressbar';
 export default function App({ Component, pageProps }: AppProps) {
   return <>
-    <NextNProgress options={{ easing: 'ease', speed: 100 }} />
+    <NextNProgress />
     <div
       id="logo-sidebar"
       className="fixed top-0 left-0 w-[25rem] h-screen transition-transform -translate-x-full sm:translate-x-0"
