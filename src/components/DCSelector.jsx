@@ -1,15 +1,23 @@
-import { getDCs } from "@/lib/dc";
+import { getDCs, getMainDC, setMainDC } from "@/lib/dc";
 import { useEffect, useState } from "react";
 
 export default function DCSelector() {
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [dataCenters, setDataCenters] = useState([]);
+	const [selectedDC, setSelectedDC] = useState("Data Center");
+	
 	useEffect(() => {
 		getDCs().then((val) => {
-			console.log(val)
 			setDataCenters(val);
+			getMainDC().then((main_dc) => setSelectedDC(main_dc));
 		});
 	}, []);
+
+	function onSelectDC(name) {
+		setMainDC(name).then(() => {
+			setSelectedDC(name);
+		});
+	}
 	return (
 		<div>
 			<button
@@ -20,7 +28,7 @@ export default function DCSelector() {
 				onFocus={() => setDropdownOpened(true)}
 				onBlur={() => setDropdownOpened(false)}
 			>
-				<span>selected dc</span>
+				<span>{selectedDC}</span>
 				<svg
 					className="w-4 h-4 ml-2 absolute right-3"
 					aria-hidden="true"
@@ -52,9 +60,12 @@ export default function DCSelector() {
 							<h1 className="select-none text-gray-400 font-display font-bold text-lg ml-5 mt-3 mb-1">
 								Data Center
 							</h1>
-							{dataCenters.map(dc=>(
+							{dataCenters.map((dc) => (
 								<li key={dc.name}>
-									<div className="select-none mx-2 h-10 rounded-lg pl-3 cursor-pointer flex items-center hover:bg-blue-700">
+									<div
+										onMouseDown={() => onSelectDC(dc.name)}
+										className="select-none mx-2 h-10 rounded-lg pl-3 cursor-pointer flex items-center hover:bg-blue-700"
+									>
 										{dc.name}
 									</div>
 								</li>
