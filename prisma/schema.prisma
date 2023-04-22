@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model item {
+  id                         Int     @id @map("_id")
+  AdditionalData             Int
+  Adjective                  Int
+  AetherialReduce            Int
+  AlwaysCollectable          Boolean
+  Article                    Int
+  BaseParam                  Int[]
+  BaseParamModifier          Int
+  BaseParamValue             Int[]
+  BaseParamValue_Special_    Int[]   @map("BaseParamValue{Special}")
+  BaseParam_Special_         Int[]   @map("BaseParam{Special}")
+  Block                      Int
+  BlockRate                  Int
+  CanBeHq                    Boolean
+  CastTime_s_                Int     @map("CastTime<s>")
+  ClassJobCategory           Int
+  ClassJob_Repair_           Int     @map("ClassJob{Repair}")
+  ClassJob_Use_              Int     @map("ClassJob{Use}")
+  Cooldown_s_                Int     @map("Cooldown<s>")
+  Damage_Mag_                Int     @map("Damage{Mag}")
+  Damage_Phys_               Int     @map("Damage{Phys}")
+  Defense_Mag_               Int     @map("Defense{Mag}")
+  Defense_Phys_              Int     @map("Defense{Phys}")
+  Delay_ms_                  Int     @map("Delay<ms>")
+  Description                String?
+  Desynth                    Int
+  EquipRestriction           Int
+  EquipSlotCategory          Int
+  FilterGroup                Int
+  GrandCompany               Int
+  Icon                       Int
+  IsAdvancedMeldingPermitted Boolean
+  IsCollectable              Boolean
+  IsCrestWorthy              Boolean
+  IsDyeable                  Boolean
+  IsIndisposable             Boolean
+  IsPvP                      Boolean
+  IsUnique                   Boolean
+  IsUntradable               Boolean
+  ItemAction                 Int
+  ItemSearchCategory         Int
+  ItemSeries                 Int
+  ItemSortCategory           Int
+  ItemSpecialBonus           Int
+  ItemSpecialBonus_Param_    Int     @map("ItemSpecialBonus{Param}")
+  ItemUICategory             Int
+  Item_Glamour_              Int     @map("Item{Glamour}")
+  Item_Repair_               Int     @map("Item{Repair}")
+  Level_Equip_               Int     @map("Level{Equip}")
+  Level_Item_                Int     @map("Level{Item}")
+  Lot                        Boolean
+  MateriaSlotCount           Int
+  MaterializeType            Int
+  Model_Main_                String  @map("Model{Main}")
+  Model_Sub_                 String  @map("Model{Sub}")
+  Name                       String?
+  Plural                     String?
+  PossessivePronoun          Int
+  Price_Low_                 Int     @map("Price{Low}")
+  Price_Mid_                 Int     @map("Price{Mid}")
+  Pronoun                    Int
+  Rarity                     Int
+  Singular                   String?
+  StackSize                  Int
+  StartsWithVowel            Int
+  SubStatCategory            Int
+}
