@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import ItemSearchBar from '@/components/ItemSearchBar'
+import MarketEvents from '@/components/MarketEvents'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-7 w-full h-[35rem]">
-              {/* <MarketEvents onSelectEvent={(val) => (selectedEvent = val)} /> */}
+              <MarketEvents />
             </div>
           </div>
           <div className="col-span-12 2xl:col-span-6">
