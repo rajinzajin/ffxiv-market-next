@@ -6,17 +6,20 @@ import {
 import { useEffect, useState } from "react";
 import marketable_item from "@/data/marketable_items.json";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ItemSearchBar(props) {
+	const router = useRouter()
 	const [searchResult, setSearchResult] = useState([]);
 	const [isSearchFocus, setSearchFocus] = useState(false);
-	const [isSearchResultClicked, setSearchResultClicked] = useState(false);
 
 	function onSearch(e) {
 		const item_name = e.target.value;
 		const filteredJson = filterItemJsonObjects(marketable_item, item_name, 15);
 		setSearchResult(convertToArray(filteredJson));
+	}
+	function selectItem(id){
+		router.push(`/market/Materia/${id}`)
 	}
 	useEffect(() => {}, [props]);
 	return (
@@ -26,10 +29,7 @@ export default function ItemSearchBar(props) {
 					setSearchFocus(true);
 				}}
 				onBlur={() => {
-					if (!isSearchResultClicked) {
-						setSearchFocus(false);
-						setSearchResultClicked(false);
-					}
+					setSearchFocus(false);
 				}}
 			>
 				<input
@@ -41,7 +41,7 @@ export default function ItemSearchBar(props) {
 					onInput={onSearch}
 				/>
 				{(isSearchFocus && searchResult.length > 0) && (
-					<div className="relative" onMouseDown={()=>setSearchResultClicked(true)}>
+					<div className="relative">
 						<div
 							id="search_result"
 							className="{searchResultVisible} bg-primary absolute max-h-80 rounded-xl overflow-y-auto mt-2 p-2 w-full z-50 text-white"
@@ -51,10 +51,10 @@ export default function ItemSearchBar(props) {
 									return (
 										<li
 											key={item._id}
+											onMouseDown={()=>{selectItem(item._id)}}
 											className="group h-auto cursor-pointer font-body font-bold text-gray-300"
 										>
-											<Link
-												href={`/market/Materia/${item._id}`}
+											<div
 												className="flex m-auto group-hover:bg-higlight-1 py-2 rounded-lg"
 											>
 												<Image
@@ -67,7 +67,7 @@ export default function ItemSearchBar(props) {
 												<div className="flex-1 h-full ml-3 my-auto group-hover:text-white">
 													{item.en}
 												</div>
-											</Link>
+											</div>
 										</li>
 									);
 								})}
@@ -79,10 +79,3 @@ export default function ItemSearchBar(props) {
 		</div>
 	);
 }
-// export async function getStaticProps() {
-// 	const objectData = filterItemJsonObjects()
-
-// 	return {
-// 		props: objectData,
-// 	};
-// }
