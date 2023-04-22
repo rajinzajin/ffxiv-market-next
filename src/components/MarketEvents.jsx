@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import localforage from "localforage";
-import { getWorlds } from "@/lib/world";
+import React, { useEffect, useState } from "react";
+import { BSON } from "bson";
 import { Provider, useSelector } from "react-redux";
 import store, { selectDCRedux } from "@/store/ffxiv_store";
+import { getItemName } from "@/lib/item_utils";
+import { getWorld } from "@/lib/world";
+import MarketEventRow from "./MarketEventRow";
 
 export default function MarketEventsWrapper() {
 	return (
@@ -13,49 +15,47 @@ export default function MarketEventsWrapper() {
 }
 export function MarketEvents() {
 	const main_dc = useSelector(selectDCRedux);
+	const addr = "wss://universalis.app/api/ws";
+	const [marketEvents, setMarketEvents] = useState([]);
 	useEffect(() => {
-		getWorlds().then((val) => console.log(val));
-		// const addr = "wss://universalis.app/api/ws";
+		if (main_dc == null) return;
 
-		// socket = new WebSocket(addr);
-		// socket.onopen = function () {
-		// 	world_store.subscribe((new_world_list) => {
-		// 		lastWorldList.forEach((world) => {
-		// 			socket.send(
-		// 				BSON.serialize({
-		// 					event: "unsubscribe",
-		// 					channel: `listings/add{world=${world.id}}`,
-		// 				})
-		// 			);
-		// 		});
-		// 		new_world_list.forEach((world) => {
-		// 			socket.send(
-		// 				BSON.serialize({
-		// 					event: "subscribe",
-		// 					channel: `listings/add{world=${world.id}}`,
-		// 				})
-		// 			);
-		// 		});
-		// 		lastWorldList = new_world_list;
-		// 	});
-		// };
-		// socket.onmessage = function (event) {
-		// 	var reader = new FileReader();
-		// 	reader.onload = function () {
-		// 		var uint8Array = new Uint8Array(this.result);
-		// 		var bsonData = BSON.deserialize(uint8Array);
-		// 		if (m_events.length >= max_array) {
-		// 			m_events.shift();
-		// 		}
-		// 		m_events.push(bsonData);
-		// 		m_events = m_events;
-		// 	};
-		// 	reader.readAsArrayBuffer(event.data);
-		// };
-		// return () => {
-		// 	socket.close();
-		// };
-	}, []);
+		const socket = new WebSocket(addr);
+		socket.onopen = function () {
+			main_dc.worlds.forEach((world_id) => {
+				socket.send(
+					BSON.serialize({
+						event: "subscribe",
+						channel: `listings/add{world=${world_id}}`,
+					})
+				);
+				console.log("listening world " + world_id);
+			});
+		};
+
+		socket.onmessage = function (event) {
+			var reader = new FileReader();
+			reader.onload = function () {
+				var uint8Array = new Uint8Array(this.result);
+				var bsonData = BSON.deserialize(uint8Array);
+				console.log(bsonData);
+				setMarketEvents((prev_m_events) => {
+					var new_m_events = [...prev_m_events, bsonData];
+					if (new_m_events.length > 9) {
+						new_m_events.shift();
+					}
+					return new_m_events;
+				});
+			};
+			reader.readAsArrayBuffer(event.data);
+		};
+
+		return () => {
+			socket.close();
+			console.log("SOCKET CLOSED");
+		};
+	}, [main_dc]);
+
 	return (
 		<div className="relative overflow-x-auto shadow-md sm:rounded-lg h-full">
 			<table className="w-full text-sm text-left">
@@ -63,24 +63,17 @@ export function MarketEvents() {
 					<tr>
 						<th scope="col" className="px-6 py-3 font-[400]">
 							{" "}
-							Recent activity - {main_dc != null && main_dc.name}
+							Recent activity - {main_dc != null && main_dc.name} -{" "}
+							{marketEvents.length}
 						</th>
 					</tr>
 				</thead>
 				<tbody className="text-base font-body text-white">
-					{/* {#each [...m_events].reverse() as m_event} */}
-					{/* <tr
-						class="bg-primary hover:bg-item cursor-pointer"
-					>
-						<td class="px-6 py-4 font-[100]">
-							<span class="text-yellow-300">{m_event.listings.length}</span>
-							listings of
-							<span class="text-[#71bfff]">{getItemName(m_event.item)}</span>
-							added to
-							<span class="text-[#2af868]">{getWorld(m_event.world).name}</span>
-						</td>
-					</tr> */}
-					{/* {/each} */}
+					{React.Children.toArray(
+						[...marketEvents]
+							.reverse()
+							.map((m_event) => <MarketEventRow m_event={m_event} />)
+					)}
 				</tbody>
 			</table>
 		</div>

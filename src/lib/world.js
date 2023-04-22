@@ -9,3 +9,8 @@ export async function getWorlds() {
 	}
 	return worlds;
 }
+export async function getWorld(id) {
+	var worlds = await localforage.getItem("worlds");
+	var filteredWorld = worlds.filter((world) => world["id"] === id);
+	return filteredWorld.length > 0 ? filteredWorld[0] : null;
+}
