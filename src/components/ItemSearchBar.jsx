@@ -12,14 +12,16 @@ export default function ItemSearchBar(props) {
 	const router = useRouter()
 	const [searchResult, setSearchResult] = useState([]);
 	const [isSearchFocus, setSearchFocus] = useState(false);
+	const [inputNameValue, setinputNameValue] = useState("")
 
 	function onSearch(e) {
-		const item_name = e.target.value;
-		const filteredJson = filterItemJsonObjects(marketable_item, item_name, 15);
+		setinputNameValue(e.target.value)
+		const filteredJson = filterItemJsonObjects(marketable_item, e.target.value, 15);
 		setSearchResult(convertToArray(filteredJson));
 	}
-	function selectItem(id){
-		router.push(`/market/Materia/${id}`)
+	function selectItem(item){
+		setinputNameValue(item.en)
+		router.push(`/market/Materia/${item._id}`)
 	}
 	useEffect(() => {}, [props]);
 	return (
@@ -38,7 +40,8 @@ export default function ItemSearchBar(props) {
 					id="search_input"
 					className="px-5 font-body h-14 bg-primary w-full outline-none focus:outline-none placeholder:text-gray-200 text-gray-200 text-base rounded-lg block p-2.5"
 					placeholder="Search item"
-					onInput={onSearch}
+					value={inputNameValue}
+					onChange={onSearch}
 				/>
 				{(isSearchFocus && searchResult.length > 0) && (
 					<div className="relative">
@@ -51,7 +54,7 @@ export default function ItemSearchBar(props) {
 									return (
 										<li
 											key={item._id}
-											onMouseDown={()=>{selectItem(item._id)}}
+											onMouseDown={()=>{selectItem(item)}}
 											className="group h-auto cursor-pointer font-body font-bold text-gray-300"
 										>
 											<div
