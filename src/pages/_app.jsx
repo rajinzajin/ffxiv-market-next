@@ -3,6 +3,7 @@ import Link from "next/link";
 import NextNProgress from "nextjs-progressbar";
 import localforage from "localforage";
 import { useEffect } from "react";
+import DCSelector from "@/components/DCSelector";
 export default function App({ Component, pageProps }) {
 	useEffect(() => {
 		localforage.config({
@@ -31,7 +32,7 @@ export default function App({ Component, pageProps }) {
 						</div>
 					</Link>
 					<div className="ml-2 mt-9 grid grid-cols-2 gap-3">
-						{/* <DataCenterSelector on_select_dc={onSelectDC} /> */}
+						<DCSelector />
 						{/* <WorldSelector on_select_world={onSelectWorld} /> */}
 					</div>
 					<ul className="space-y-2 text-gray-400 font-body font-semibold text-lg mt-5">
