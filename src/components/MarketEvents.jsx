@@ -1,10 +1,20 @@
 import { useEffect } from "react";
-import localforage from "localforage"
+import localforage from "localforage";
 import { getWorlds } from "@/lib/world";
-export default function MarketEvents() {
-	
+import { Provider, useSelector } from "react-redux";
+import store, { selectDCRedux } from "@/store/ffxiv_store";
+
+export default function MarketEventsWrapper() {
+	return (
+		<Provider store={store}>
+			<MarketEvents />
+		</Provider>
+	);
+}
+export function MarketEvents() {
+	const main_dc = useSelector(selectDCRedux);
 	useEffect(() => {
-		getWorlds().then(val=>console.log(val))
+		getWorlds().then((val) => console.log(val));
 		// const addr = "wss://universalis.app/api/ws";
 
 		// socket = new WebSocket(addr);
@@ -53,7 +63,7 @@ export default function MarketEvents() {
 					<tr>
 						<th scope="col" className="px-6 py-3 font-[400]">
 							{" "}
-							Recent activity - main_dc
+							Recent activity - {main_dc}
 						</th>
 					</tr>
 				</thead>

@@ -1,21 +1,31 @@
 import { getDCs, getMainDC, setMainDC } from "@/lib/dc";
+import store, { selectDCRedux, setDCRedux } from "@/store/ffxiv_store";
 import { useEffect, useState } from "react";
+import { Provider, useDispatch, useSelector } from "react-redux";
 
 export default function DCSelector() {
+	return (
+		<Provider store={store}>
+			<DCSelectorComponent />
+		</Provider>
+	);
+}
+export function DCSelectorComponent() {
+	const main_dc = useSelector(selectDCRedux);
+	const dispatch = useDispatch();
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [dataCenters, setDataCenters] = useState([]);
-	const [selectedDC, setSelectedDC] = useState("Data Center");
-	
+
 	useEffect(() => {
 		getDCs().then((val) => {
 			setDataCenters(val);
-			getMainDC().then((main_dc) => setSelectedDC(main_dc));
+			getMainDC().then((main_dc) => dispatch(setDCRedux(main_dc)));
 		});
 	}, []);
 
 	function onSelectDC(name) {
 		setMainDC(name).then(() => {
-			setSelectedDC(name);
+			dispatch(setDCRedux(name));
 		});
 	}
 	return (
@@ -28,7 +38,9 @@ export default function DCSelector() {
 				onFocus={() => setDropdownOpened(true)}
 				onBlur={() => setDropdownOpened(false)}
 			>
-				<span>{selectedDC}</span>
+				<span>
+					{main_dc}
+				</span>
 				<svg
 					className="w-4 h-4 ml-2 absolute right-3"
 					aria-hidden="true"

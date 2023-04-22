@@ -4,6 +4,8 @@ import NextNProgress from "nextjs-progressbar";
 import localforage from "localforage";
 import { useEffect } from "react";
 import DCSelector from "@/components/DCSelector";
+import { Provider } from "react-redux";
+import store from "@/store/ffxiv_store";
 export default function App({ Component, pageProps }) {
 	useEffect(() => {
 		localforage.config({
@@ -59,7 +61,9 @@ export default function App({ Component, pageProps }) {
 				</div>
 			</div>
 			<div className="sm:ml-[25rem] px-6 py-8 bg-custom-ffxiv min-h-[100vh]">
-				<Component {...pageProps} />
+				<Provider store={store}>
+					<Component {...pageProps} />
+				</Provider>
 				<div className="grid grid-cols-8 mt-[4rem] gap-y-9 text-gray-300 font-[400]">
 					<div className="text-center 2xl:text-left col-span-12 2xl:col-span-5 font-body text-md border-gray-500 2xl:border-r">
 						Created by{" "}
