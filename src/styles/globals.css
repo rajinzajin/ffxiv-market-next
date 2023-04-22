@@ -16,6 +16,33 @@
   --color-highlight-1: rgb(37, 99, 235);
 }
 
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/Material-Symbols-Outlined.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: Chelsea Market;
+  src: url(/fonts/ChelseaMarket-Regular.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: Catamaran;
+  src: url(/fonts/catamaran.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins-Regular.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins-Regular.ttf) format("opentype");
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

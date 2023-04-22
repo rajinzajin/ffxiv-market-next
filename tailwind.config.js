@@ -16,6 +16,12 @@ module.exports = {
 				money2: "rgb(210 143 214)",
 				summary: "rgb(255 177 63)",
 			},
+      fontFamily: {
+				display: "Catamaran, sans-serif",
+				body: "Poppins, sans-serif",
+				market: "Chelsea Market, cursive",
+				material_icon: "Material Symbols Outlined"
+			},
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

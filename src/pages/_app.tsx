@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
     </aside>
     <div className="sm:ml-[25rem] px-6 py-8 bg-custom-ffxiv min-h-[100vh]">
-      <slot />
+      <Component {...pageProps} />
       <div className="grid grid-cols-8 mt-[4rem] gap-y-9 text-gray-300 font-[400]">
         <div
           className="text-center 2xl:text-left col-span-12 2xl:col-span-5 font-body text-md border-gray-500 2xl:border-r"
