@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ffxivslice = createSlice({
 	name: "ffxiv",
 	initialState: {
-		main_dc: "",
+		main_dc: null,
 	},
 	reducers: {
 		setDCRedux: (state, action) => {

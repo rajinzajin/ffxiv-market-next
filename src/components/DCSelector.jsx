@@ -17,17 +17,20 @@ export function DCSelectorComponent() {
 	const [dataCenters, setDataCenters] = useState([]);
 
 	useEffect(() => {
-		getDCs().then((val) => {
-			setDataCenters(val);
+		getDCs().then((data_centers) => {
+			setDataCenters(data_centers);
 			getMainDC().then((main_dc) => dispatch(setDCRedux(main_dc)));
 		});
 	}, [dispatch]);
-	
-	function onSelectDC(name) {
-		setMainDC(name).then(() => {
-			dispatch(setDCRedux(name));
+
+	function onSelectDC(dc) {
+		setMainDC(dc).then(() => {
+			dispatch(setDCRedux(dc));
 		});
 	}
+	
+	if (main_dc == null) return <></>;
+
 	return (
 		<div>
 			<button
@@ -38,7 +41,7 @@ export function DCSelectorComponent() {
 				onFocus={() => setDropdownOpened(true)}
 				onBlur={() => setDropdownOpened(false)}
 			>
-				<span>{main_dc}</span>
+				<span>{main_dc.name}</span>
 				<svg
 					className="w-4 h-4 ml-2 absolute right-3"
 					aria-hidden="true"
@@ -73,7 +76,7 @@ export function DCSelectorComponent() {
 							{dataCenters.map((dc) => (
 								<li key={dc.name}>
 									<div
-										onMouseDown={() => onSelectDC(dc.name)}
+										onMouseDown={() => onSelectDC(dc)}
 										className="select-none mx-2 h-10 rounded-lg pl-3 cursor-pointer flex items-center hover:bg-blue-700"
 									>
 										{dc.name}
