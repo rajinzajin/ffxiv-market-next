@@ -9,7 +9,7 @@ import Initializer from "@/components/Initializer";
 export default function App({ Component, pageProps }) {
 	useEffect(() => {
 		localforage.config({
-			driver: localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+			driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
 			name: "xivplus",
 			version: 1.0,
 			storeName: "xivplus", // Should be alphanumeric, with underscores.
