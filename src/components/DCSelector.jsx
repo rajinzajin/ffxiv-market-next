@@ -21,8 +21,8 @@ export function DCSelectorComponent() {
 			setDataCenters(val);
 			getMainDC().then((main_dc) => dispatch(setDCRedux(main_dc)));
 		});
-	}, []);
-
+	}, [dispatch]);
+	
 	function onSelectDC(name) {
 		setMainDC(name).then(() => {
 			dispatch(setDCRedux(name));
@@ -38,9 +38,7 @@ export function DCSelectorComponent() {
 				onFocus={() => setDropdownOpened(true)}
 				onBlur={() => setDropdownOpened(false)}
 			>
-				<span>
-					{main_dc}
-				</span>
+				<span>{main_dc}</span>
 				<svg
 					className="w-4 h-4 ml-2 absolute right-3"
 					aria-hidden="true"
