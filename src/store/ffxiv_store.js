@@ -6,10 +6,14 @@ export const ffxivslice = createSlice({
 	name: "ffxiv",
 	initialState: {
 		main_dc: null,
+		worlds: [],
 	},
 	reducers: {
 		setDCRedux: (state, action) => {
 			state.main_dc = action.payload;
+		},
+		setWorldsStore: (state, action) => {
+			state.worlds = action.payload;
 		},
 	},
 });
@@ -24,6 +28,7 @@ const store = configureStore({
 export default store;
 
 // export the action
-export const { setDCRedux } = ffxivslice.actions;
+export const { setDCRedux, setWorldsStore } = ffxivslice.actions;
 
 export const selectDCRedux = (state) => state.ffxiv.main_dc;
+export const selectWorldsStore = (state) => state.ffxiv.worlds;

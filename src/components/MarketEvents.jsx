@@ -29,7 +29,6 @@ export function MarketEvents() {
 						channel: `listings/add{world=${world_id}}`,
 					})
 				);
-				console.log("listening world " + world_id);
 			});
 		};
 
@@ -38,7 +37,6 @@ export function MarketEvents() {
 			reader.onload = function () {
 				var uint8Array = new Uint8Array(this.result);
 				var bsonData = BSON.deserialize(uint8Array);
-				console.log(bsonData);
 				setMarketEvents((prev_m_events) => {
 					var new_m_events = [...prev_m_events, bsonData];
 					if (new_m_events.length > 9) {
@@ -52,7 +50,6 @@ export function MarketEvents() {
 
 		return () => {
 			socket.close();
-			console.log("SOCKET CLOSED");
 		};
 	}, [main_dc]);
 
@@ -63,8 +60,7 @@ export function MarketEvents() {
 					<tr>
 						<th scope="col" className="px-6 py-3 font-[400]">
 							{" "}
-							Recent activity - {main_dc != null && main_dc.name} -{" "}
-							{marketEvents.length}
+							Recent activity - {main_dc != null && main_dc.name}
 						</th>
 					</tr>
 				</thead>

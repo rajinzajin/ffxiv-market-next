@@ -1,12 +1,16 @@
 import { getItemName } from "@/lib/item_utils";
 import { getWorld } from "@/lib/world";
+import { selectWorldsStore } from "@/store/ffxiv_store";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function MarketEventRow({ m_event }) {
+	const worlds = useSelector(selectWorldsStore)
 	const [world_name, setWorldName] = useState("");
 	useEffect(() => {
-		getWorld(m_event.world).then((world) => setWorldName(world.name));
-	}, [m_event.world]);
+		const world = getWorld(worlds, m_event.world)
+		setWorldName(world.name)
+	}, [m_event.world, worlds]);
 	return (
 		<tr className="bg-primary hover:bg-item cursor-pointer">
 			<td className="px-6 py-4 font-[100]">
