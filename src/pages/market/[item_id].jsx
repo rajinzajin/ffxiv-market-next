@@ -23,7 +23,9 @@ export default function Market(props) {
 					</div>
 					<div className="ml-5 font-display">
 						{/* {#if !itemLoading} */}
-						<h1 className="text-white text-4xl font-black">{props.item.Name}</h1>
+						<h1 className="text-white text-4xl font-black">
+							{props.item.Name}
+						</h1>
 						<h1 className="text-gray-400 text-lg font-black">
 							{props.item.Description !== null ? props.item.Description : ""}
 						</h1>
@@ -39,7 +41,7 @@ export default function Market(props) {
 		</div>
 	);
 }
-export const getServerSideProps = async (context) => {
-	const data = await getItem(parseInt(context.query.item_id));
+export async function getServerSideProps({ params }) {
+	const data = await getItem(parseInt(params.item_id));
 	return { props: { item: data } };
-};
+}

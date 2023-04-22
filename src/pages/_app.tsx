@@ -1,12 +1,13 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
-
+import NextNProgress from 'nextjs-progressbar';
 export default function App({ Component, pageProps }: AppProps) {
   return <>
-    <aside
+    <NextNProgress options={{ easing: 'ease', speed: 100 }} />
+    <div
       id="logo-sidebar"
-      className="fixed top-0 left-0 z-40 w-[25rem] h-screen transition-transform -translate-x-full sm:translate-x-0"
+      className="fixed top-0 left-0 w-[25rem] h-screen transition-transform -translate-x-full sm:translate-x-0"
       aria-label="Sidebar"
     >
       <div id="sidebar" className="h-full px-6 py-9 overflow-y-auto">
@@ -44,8 +45,9 @@ export default function App({ Component, pageProps }: AppProps) {
           </li>
         </ul>
       </div>
-    </aside>
+    </div>
     <div className="sm:ml-[25rem] px-6 py-8 bg-custom-ffxiv min-h-[100vh]">
+
       <Component {...pageProps} />
       <div className="grid grid-cols-8 mt-[4rem] gap-y-9 text-gray-300 font-[400]">
         <div
