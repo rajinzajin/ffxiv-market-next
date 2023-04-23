@@ -24,8 +24,10 @@ export default function Initializer() {
 
 	if (isLoading)
 		return (
-			<div className="fixed z-50 w-full h-full bg-custom-ffxiv flex items-center justify-center">
-				<h1 className="font-bold text-xl">LOADING . . .</h1>
+			<div className="fixed z-50 w-full h-full bg-secondary">
+				<div className="w-full h-full flex items-center justify-center bg-custom-ffxiv">
+					<h1 className="font-bold text-xl">LOADING . . .</h1>
+				</div>
 			</div>
 		);
 	else return <></>;
