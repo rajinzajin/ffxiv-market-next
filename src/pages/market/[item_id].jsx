@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 export default function Market({ item }) {
 	const router = useRouter();
 	const main_dc = useSelector(selectDCRedux);
-	console.log(main_dc)
 	const item_id_query = router.query.item_id;
 	const [marketLoading, setMarketLoading] = useState(true);
 	const [
@@ -24,7 +23,7 @@ export default function Market({ item }) {
 	] = useState({});
 
 	useEffect(() => {
-		// refreshData(main_dc.name, item_id_query);
+		refreshData(main_dc.name, item_id_query);
 	}, [main_dc, item_id_query]);
 
 	function refreshData(dc, item_id) {
