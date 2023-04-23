@@ -2,8 +2,11 @@ import ItemSearchBar from "@/components/ItemSearchBar";
 import { getItem } from "@/database/item_db";
 import { getItemImageUrl } from "@/lib/item_utils";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Market(props) {
+	const router = useRouter()
+	const dc_from_query = router.query.dc
 	return (
 		<div>
 			<div className="grid grid-cols-12 gap-y-6 gap-x-4">
