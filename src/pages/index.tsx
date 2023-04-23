@@ -2,10 +2,14 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import ItemSearchBar from '@/components/ItemSearchBar'
 import MarketEvents from '@/components/MarketEvents'
+import { useSelector } from 'react-redux'
+import { selectDCRedux } from '@/store/ffxiv_store'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const main_dc = useSelector(selectDCRedux)
+  console.log(main_dc)
   return (
     <div>
       <div className="h-full">

@@ -24,7 +24,7 @@ export default function ItemSearchBar(props) {
 	}
 	function selectItem(item){
 		setinputNameValue(item.en)
-		router.push(`/market/${item._id}?dc=${main_dc.name}`)
+		router.push(`/market/${item._id}`)
 	}
 	useEffect(() => {}, [props]);
 	return (

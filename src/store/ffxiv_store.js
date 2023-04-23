@@ -5,11 +5,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ffxivslice = createSlice({
 	name: "ffxiv",
 	initialState: {
-		main_dc: null,
+		main_dc: {},
 		worlds: [],
 		data_centers: [],
 		market_activity: [],
-		marketable_items: null
+		marketable_items: {}
 	},
 	reducers: {
 		setDCRedux: (state, action) => {

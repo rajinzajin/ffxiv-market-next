@@ -5,14 +5,17 @@ import { getItem } from "@/database/item_db";
 import { filterArray } from "@/lib/array_function";
 import { getItemImageUrl } from "@/lib/item_utils";
 import { getHighestPriceItem, getLowestPriceItem } from "@/lib/listings";
+import { selectDCRedux } from "@/store/ffxiv_store";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Market({ item }) {
 	const router = useRouter();
-	const dc_from_query = router.query.dc;
+	const main_dc = useSelector(selectDCRedux);
+	console.log(main_dc)
 	const item_id_query = router.query.item_id;
 	const [marketLoading, setMarketLoading] = useState(true);
 	const [
@@ -21,8 +24,8 @@ export default function Market({ item }) {
 	] = useState({});
 
 	useEffect(() => {
-		refreshData(dc_from_query, item_id_query);
-	}, [dc_from_query, item_id_query]);
+		// refreshData(main_dc.name, item_id_query);
+	}, [main_dc, item_id_query]);
 
 	function refreshData(dc, item_id) {
 		if (dc == null) return;
@@ -65,7 +68,7 @@ export default function Market({ item }) {
 			<div className="grid grid-cols-12 gap-x-8 mt-6">
 				<div className="col-span-12 2xl:col-span-4">
 					<h1 className="text-white w-full text-2xl font-[700] text-center">
-						{dc_from_query}
+						{main_dc.name}
 					</h1>
 					<div className="h-100 mt-4 p-5 w-full max-w-full items-center justify-center rounded-2xl bg-item">
 						<div className="flex justify-between">
@@ -73,7 +76,7 @@ export default function Market({ item }) {
 								Lowest Price
 							</h1>
 							<svg
-								onClick={() => refreshData(dc_from_query, item_id_query)}
+								onClick={() => refreshData(main_dc.name, item_id_query)}
 								className={`${
 									marketLoading ? "animate-spin" : ""
 								} text-white select-none cursor-pointer text-3xl font-black`}
@@ -149,7 +152,7 @@ export async function getStaticPaths() {
 			fallback: "blocking",
 		};
 	}
-	
+
 	const paths = [];
 	const marketable_items = await import("@/data/marketable_items.json");
 
