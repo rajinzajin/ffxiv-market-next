@@ -9,6 +9,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import marketable_items from "@/data/marketable_items.json";
 
 export default function Market({ item }) {
 	const router = useRouter();
@@ -149,8 +150,6 @@ export async function getStaticPaths() {
 			fallback: "blocking",
 		};
 	}
-
-	const marketable_items = await import("@/data/marketable_items.json");
 	const paths = Object.keys(marketable_items).map((key) => ({
 		params: { item_id: key },
 	}));
