@@ -5,6 +5,7 @@ import {
 	setDataCentersStore,
 	setWorldsStore,
 } from "@/store/ffxiv_store";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -12,15 +13,23 @@ export default function Initializer() {
 	const dispatch = useDispatch();
 	const [isLoading, setLoading] = useState(true);
 	useEffect(() => {
-		getWorlds().then((worlds) => dispatch(setWorldsStore(worlds)));
-		getDCs().then((data_centers) => {
-			dispatch(setDataCentersStore(data_centers));
-			getLocalStorageMainDC(data_centers).then((main_dc) => {
-				dispatch(setDCRedux(main_dc));
-				setLoading(false);
-			});
-		});
+		loadInitialData(dispatch);
 	}, [dispatch]);
+
+	async function loadInitialData(dispatch_) {
+		setLoading(true);
+
+		const data_centers = await axios("/json/data_centers.json");
+		dispatch_(setDataCentersStore(data_centers.data));
+
+		const worlds = await axios("/json/worlds.json");
+		dispatch_(setWorldsStore(worlds.data));
+
+		const main_dc = await getLocalStorageMainDC(data_centers.data);
+		dispatch_(setDCRedux(main_dc));
+
+		setLoading(false);
+	}
 
 	if (isLoading)
 		return (
