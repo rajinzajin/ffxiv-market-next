@@ -150,8 +150,12 @@ export async function getStaticPaths() {
 		};
 	}
 
+	const marketable_items = await import("@/data/marketable_items.json");
+	const paths = Object.keys(marketable_items).map((key) => ({
+		params: { item_id: key },
+	}));
 	return {
-		paths: [{ params: { item_id: "1" } }],
+		paths,
 		fallback: false,
 	};
 }
