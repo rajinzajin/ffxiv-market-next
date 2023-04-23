@@ -6,32 +6,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div>
-      <div className="h-full">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
-          <div className="col-span-12 2xl:col-span-6">
-            <div className="w-full">
-              <div
-                className="h-100 col-span-12 xl:col-span-6 p-5 items-center justify-center rounded-2xl bg-item"
-              >
-                <div
-                  className="text-xl text-center font-display font-[400] text-white"
-                >
-                  Search Item
-                </div>
-                <div className="mt-1">
-                  <ItemSearchBar />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-span-12 2xl:col-span-6">
-            {/* <ItemCard item_id={selectedEvent.item}/> */}
-            <div className="h-[35rem]">
-              {/* <ListingTable listings={selectedEventListings} /></div> */}
-            </div>
-          </div>
-        </div>
+    <div className="w-full min-h-[45rem] flex justify-center items-center">
+      <div className="w-full xl:w-1/2 2xl:w-1/3 h-full ">
+        <ItemSearchBar />
       </div>
     </div>
   )

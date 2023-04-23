@@ -47,23 +47,24 @@ export default function MarketTable({ listings = [] }) {
 	}, [all_worlds, getWorldListing, listings.length, main_dc.worlds]);
 
 	useEffect(() => {
+		if (listings.length <= 0) return;
 		const new_world_prices = updateData();
 		setSelectedPrices(isHqTable ? new_world_prices.hq : new_world_prices.nq);
-	}, [isHqTable, listings, updateData]);
+	}, [isHqTable, listings.length, updateData]);
 
 	return (
 		<div className="relative shadow-md sm:rounded-lg">
 			<button
 				onClick={() => setIsHqTable(false)}
 				type="button"
-				class={`${isHqTable ? unSelectedStyle : selectedStyle}`}
+				className={`${isHqTable ? unSelectedStyle : selectedStyle}`}
 			>
 				Normal Quality
 			</button>
 			<button
 				onClick={() => setIsHqTable(true)}
 				type="button"
-				class={`${isHqTable ? selectedStyle : unSelectedStyle} ml-3`}
+				className={`${isHqTable ? selectedStyle : unSelectedStyle} ml-3`}
 			>
 				High Quality
 			</button>
@@ -89,10 +90,10 @@ export default function MarketTable({ listings = [] }) {
 						</th>
 					</tr>
 				</thead>
-				<tbody class="font-body">
+				<tbody className="font-body">
 					{selectedPrices.map((item) => (
 						<tr
-							key={item.id}
+							key={item.worldName}
 							className="bg-primary text-base border-b border-gray-700 hover:bg-item"
 						>
 							<th
