@@ -21,7 +21,7 @@ export default function SideBar() {
 						</div>
 					</div>
 				</Link>
-				<div className="ml-2 mt-9 grid grid-cols-2 gap-3">
+				<div className="ml-2 mt-9 grid grid-cols-1 gap-3">
 					<DCSelector />
 					{/* <WorldSelector on_select_world={onSelectWorld} /> */}
 				</div>
