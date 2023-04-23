@@ -21,9 +21,9 @@ export default function Market({ item }) {
 	useEffect(() => {
 		if (dc_from_query == null) return;
 
-		loadMarketData(dc_from_query, item_id_query).then((market_data) =>
-			setMarketData(market_data)
-		);
+		loadMarketData(dc_from_query, item_id_query)
+			.then((market_data) => setMarketData(market_data))
+			.catch(() => {});
 	}, [dc_from_query, item_id_query]);
 	return (
 		<div>
