@@ -143,9 +143,16 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
+	if (process.env.SKIP_BUILD_STATIC_GENERATION == "true") {
+		return {
+			paths: [],
+			fallback: "blocking",
+		};
+	}
+
 	return {
-		paths: [],
-		fallback: "blocking",
+		paths: [{ params: { item_id: "1" } }],
+		fallback: false,
 	};
 }
 
