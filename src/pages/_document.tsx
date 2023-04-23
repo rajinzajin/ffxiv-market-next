@@ -7,6 +7,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
+        <link rel='preload' href='/img/tiny/ffxiv.webp' as='image' />
       </Head>
       <body className='text-white font-body bg-custom-ffxiv'>
         <Main />
