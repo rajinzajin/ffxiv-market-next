@@ -13,7 +13,7 @@ export default function SideBar() {
 			className="fixed top-0 left-0 w-[25rem] h-screen transition-transform -translate-x-full sm:translate-x-0"
 			aria-label="Sidebar"
 		>
-			<div id="sidebar" className="h-full px-6 py-9 overflow-y-auto">
+			<div className="h-full px-6 py-9 overflow-y-auto">
 				<Link href="/" className="mb-5 mt-3 w-full">
 					<div className="flex relative items-center w-full h-[9rem]">
 						<div className="w-full text-center text-4xl font-[900] font-market dark:text-white">

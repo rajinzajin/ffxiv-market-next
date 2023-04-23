@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
 				<Initializer />
 				<NextNProgress color="#71bfff" />
 				<SideBar />
-				<div className="sm:ml-[25rem] px-6 py-8 bg-custom-ffxiv min-h-[100vh]">
+				<div className="sm:ml-[25rem] px-6 py-8 min-h-[100vh]">
 					<Component {...pageProps} />
 					<Footer/>
 				</div>
