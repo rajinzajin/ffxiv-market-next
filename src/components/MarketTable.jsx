@@ -10,9 +10,9 @@ export default function MarketTable({ listings = [] }) {
 	const [isHqTable, setIsHqTable] = useState(false);
 	const [selectedPrices, setSelectedPrices] = useState([]);
 	const selectedStyle =
-		"text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800";
+		"text-white font-medium rounded-lg text-sm px-5 py-2.5 bordered-active-1";
 	const unSelectedStyle =
-		"py-2.5 px-5 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-lg border focus:z-10 focus:ring-4 focus:ring-gray-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700";
+		"py-2.5 px-5 text-sm font-medium text-gray-400 rounded-lg bordered-hover-1 hover:text-white";
 
 	const getWorldListing = useCallback(
 		(worldName, hq) => {
@@ -52,18 +52,18 @@ export default function MarketTable({ listings = [] }) {
 	}, [isHqTable, listings, updateData]);
 
 	return (
-		<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+		<div className="relative shadow-md sm:rounded-lg">
 			<button
 				onClick={() => setIsHqTable(false)}
 				type="button"
-				class={isHqTable ? unSelectedStyle : selectedStyle}
+				class={`${isHqTable ? unSelectedStyle : selectedStyle}`}
 			>
 				Normal Quality
 			</button>
 			<button
 				onClick={() => setIsHqTable(true)}
 				type="button"
-				class={isHqTable ? selectedStyle : unSelectedStyle}
+				class={`${isHqTable ? selectedStyle : unSelectedStyle} ml-3`}
 			>
 				High Quality
 			</button>

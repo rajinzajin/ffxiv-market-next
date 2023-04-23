@@ -25,8 +25,10 @@ export default function App({ Component, pageProps }) {
 				<NextNProgress color="#71bfff" />
 				<SideBar />
 				<div className="sm:ml-[25rem] px-6 py-8 min-h-[100vh]">
-					<Component {...pageProps} />
-					<Footer/>
+					<div className="min-h-[45rem]">
+						<Component {...pageProps} />
+					</div>
+					<Footer />
 				</div>
 			</Provider>
 		</>

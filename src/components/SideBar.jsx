@@ -43,7 +43,7 @@ function SideBarLink({ href, label }) {
 				href={href}
 				className={`{${
 					router.pathname == href ? "bg-item text-white" : ""
-				} flex items-center p-2 rounded-lg hover:bg-higlight-1 hover:text-white`}
+				} flex items-center p-2 rounded-lg bordered-hover-1 hover:text-white`}
 			>
 				<svg
 					aria-hidden="true"

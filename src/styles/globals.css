@@ -80,10 +80,18 @@ body {
 
 @keyframes rotation {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
+}
+
+.bordered-active-1 {
+  outline:2px solid white;
+}
+
+.bordered-hover-1:hover {
+  outline:2px solid white;
 }
