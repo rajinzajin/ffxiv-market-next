@@ -46,13 +46,10 @@ export async function getStaticProps({ params }) {
 	const data = await getItem(parseInt(params.item_id));
 	return { props: { item: data } };
 }
+
 export async function getStaticPaths() {
 	return {
-		paths: [
-			{ params: { item_id: "3" } },
-			{ params: { item_id: "4" } },
-			{ params: { item_id: "5" } },
-		],
+		paths: [],
 		fallback: "blocking",
 	};
 }
