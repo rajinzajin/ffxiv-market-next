@@ -4,15 +4,15 @@ import {
 	getItemImageUrl,
 } from "@/lib/item_utils";
 import { useEffect, useState } from "react";
-import marketable_item from "@/data/marketable_items.json";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { selectDCRedux } from "@/store/ffxiv_store";
+import { selectDCRedux, selectMarketableItemsStore } from "@/store/ffxiv_store";
 
 export default function ItemSearchBar(props) {
 	const router = useRouter()
 	const main_dc = useSelector(selectDCRedux)
+	const marketable_item = useSelector(selectMarketableItemsStore)
 	const [searchResult, setSearchResult] = useState([]);
 	const [isSearchFocus, setSearchFocus] = useState(false);
 	const [inputNameValue, setinputNameValue] = useState("")
