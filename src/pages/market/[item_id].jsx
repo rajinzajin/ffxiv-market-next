@@ -1,3 +1,4 @@
+import CardLoading from "@/components/CardLoading";
 import ItemSearchBar from "@/components/ItemSearchBar";
 import LowHighPriceCard from "@/components/LowHighPriceCard";
 import { getItem } from "@/database/item_db";
@@ -13,6 +14,7 @@ export default function Market({ item }) {
 	const router = useRouter();
 	const dc_from_query = router.query.dc;
 	const item_id_query = router.query.item_id;
+	const [marketLoading, setMarketLoading] = useState(true);
 	const [
 		{ listings, nqLowest, nqHighest, hqLowest, hqHighest },
 		setMarketData,
@@ -21,8 +23,12 @@ export default function Market({ item }) {
 	useEffect(() => {
 		if (dc_from_query == null) return;
 
+		setMarketLoading(true);
 		loadMarketData(dc_from_query, item_id_query)
-			.then((market_data) => setMarketData(market_data))
+			.then((market_data) => {
+				setMarketData(market_data);
+				setMarketLoading(false);
+			})
 			.catch(() => {});
 	}, [dc_from_query, item_id_query]);
 	return (
@@ -82,7 +88,7 @@ export default function Market({ item }) {
 						</div>
 
 						<div className="relative">
-							{/* <CardLoading show={marketLoading} /> */}
+							<CardLoading show={marketLoading} />
 							<LowHighPriceCard
 								item={nqLowest}
 								title={"Normal Quality"}
@@ -101,7 +107,7 @@ export default function Market({ item }) {
 						</h1>
 
 						<div className="relative">
-							{/* <CardLoading show={marketLoading} /> */}
+							<CardLoading show={marketLoading} />
 							<LowHighPriceCard
 								item={nqHighest}
 								title={"Normal Quality"}
