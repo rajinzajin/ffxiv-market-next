@@ -14,6 +14,7 @@
   --color-secondary: rgb(var(--rgb-secondary));
 
   --color-highlight-1: rgb(37, 99, 235);
+  --color-highlight-2: rgb(96, 186, 228);
 }
 
 @font-face {
