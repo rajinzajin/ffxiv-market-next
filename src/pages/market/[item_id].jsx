@@ -21,16 +21,20 @@ export default function Market({ item }) {
 	] = useState({});
 
 	useEffect(() => {
-		if (dc_from_query == null) return;
+		refreshData(dc_from_query, item_id_query);
+	}, [dc_from_query, item_id_query]);
+
+	function refreshData(dc, item_id) {
+		if (dc == null) return;
 
 		setMarketLoading(true);
-		loadMarketData(dc_from_query, item_id_query)
+		loadMarketData(dc, item_id)
 			.then((market_data) => {
 				setMarketData(market_data);
 				setMarketLoading(false);
 			})
 			.catch(() => {});
-	}, [dc_from_query, item_id_query]);
+	}
 	return (
 		<div>
 			<div className="grid grid-cols-12 gap-y-6 gap-x-4">
@@ -69,9 +73,10 @@ export default function Market({ item }) {
 								Lowest Price
 							</h1>
 							<svg
-								className="{marketLoading
-							? 'animate-spin'
-							: ''} text-white select-none cursor-pointer text-3xl font-black"
+								onClick={() => refreshData(dc_from_query, item_id_query)}
+								className={`${
+									marketLoading ? "animate-spin" : ""
+								} text-white select-none cursor-pointer text-3xl font-black`}
 								xmlns="http://www.w3.org/2000/svg"
 								height="30"
 								width="30"
