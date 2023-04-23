@@ -1,6 +1,7 @@
 import CardLoading from "@/components/CardLoading";
 import ItemSearchBar from "@/components/ItemSearchBar";
 import LowHighPriceCard from "@/components/LowHighPriceCard";
+import MarketTable from "@/components/MarketTable";
 import { getItem } from "@/database/item_db";
 import { filterArray } from "@/lib/array_function";
 import { getItemImageUrl } from "@/lib/item_utils";
@@ -132,7 +133,7 @@ export default function Market({ item }) {
 					<h1 className="text-white w-full text-2xl font-[700] text-center">
 						&nbsp;
 					</h1>
-					<div className="mt-4">{/* <MarketTable {listings} /> */}</div>
+					<div className="mt-4"><MarketTable listings={listings} /></div>
 				</div>
 			</div>
 		</div>
