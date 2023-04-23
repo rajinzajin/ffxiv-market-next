@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
 		<>
 			<Provider store={store}>
 				<Initializer />
-				<NextNProgress />
+				<NextNProgress color="#71bfff" />
 				<SideBar />
 				<div className="sm:ml-[25rem] px-6 py-8 bg-custom-ffxiv min-h-[100vh]">
 					<Component {...pageProps} />

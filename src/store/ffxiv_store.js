@@ -7,7 +7,8 @@ export const ffxivslice = createSlice({
 	initialState: {
 		main_dc: null,
 		worlds: [],
-		data_centers: []
+		data_centers: [],
+		market_activity: [],
 	},
 	reducers: {
 		setDCRedux: (state, action) => {
@@ -18,6 +19,10 @@ export const ffxivslice = createSlice({
 		},
 		setDataCentersStore: (state, action) => {
 			state.data_centers = action.payload;
+		},
+		addNewMarketActivity: (state, action) => {
+			state.market_activity.push(action.payload);
+			if (state.market_activity.length > 9) state.market_activity.shift();
 		},
 	},
 });
@@ -32,8 +37,14 @@ const store = configureStore({
 export default store;
 
 // export the action
-export const { setDCRedux, setWorldsStore, setDataCentersStore } = ffxivslice.actions;
+export const {
+	setDCRedux,
+	setWorldsStore,
+	setDataCentersStore,
+	addNewMarketActivity,
+} = ffxivslice.actions;
 
 export const selectDCRedux = (state) => state.ffxiv.main_dc;
 export const selectWorldsStore = (state) => state.ffxiv.worlds;
 export const selectDataCentersStore = (state) => state.ffxiv.data_centers;
+export const selectMarketActivityStore = (state) => state.ffxiv.market_activity;

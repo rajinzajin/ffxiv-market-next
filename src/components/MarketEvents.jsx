@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { BSON } from "bson";
-import { Provider, useSelector } from "react-redux";
-import store, { selectDCRedux } from "@/store/ffxiv_store";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store, {
+	selectDCRedux,
+	selectMarketActivityStore,
+	addNewMarketActivity,
+} from "@/store/ffxiv_store";
 import { getItemName } from "@/lib/item_utils";
 import { getWorld } from "@/lib/world";
 import MarketEventRow from "./MarketEventRow";
@@ -14,9 +18,11 @@ export default function MarketEventsWrapper() {
 	);
 }
 export function MarketEvents() {
+	const dispatch = useDispatch();
 	const main_dc = useSelector(selectDCRedux);
 	const addr = "wss://universalis.app/api/ws";
-	const [marketEvents, setMarketEvents] = useState([]);
+	// const [marketEvents, setMarketEvents] = useState([]);
+	const marketEvents = useSelector(selectMarketActivityStore);
 	useEffect(() => {
 		if (main_dc == null) return;
 
@@ -37,13 +43,13 @@ export function MarketEvents() {
 			reader.onload = function () {
 				var uint8Array = new Uint8Array(this.result);
 				var bsonData = BSON.deserialize(uint8Array);
-				setMarketEvents((prev_m_events) => {
-					var new_m_events = [...prev_m_events, bsonData];
-					if (new_m_events.length > 9) {
-						new_m_events.shift();
-					}
-					return new_m_events;
-				});
+
+				// var new_m_events = [...marketEvents, bsonData];
+				// if (new_m_events.length > 9) {
+				// 	new_m_events.shift();
+				// }
+
+				dispatch(addNewMarketActivity(bsonData));
 			};
 			reader.readAsArrayBuffer(event.data);
 		};

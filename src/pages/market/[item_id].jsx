@@ -9,8 +9,6 @@ export default function Market(props) {
 			<div className="grid grid-cols-12 gap-y-6 gap-x-4">
 				<div className="col-span-12 2xl:col-span-9 flex items-center">
 					<div className="relative h-[6rem] w-[6rem] min-h-[6rem] min-w-[6rem]">
-						{/* <CardLoading show={itemLoading} /> */}
-						{/* {#if !itemLoading} */}
 						<Image
 							className="w-full h-full"
 							width={96}
@@ -19,17 +17,14 @@ export default function Market(props) {
 							onError="this.src='/img/error.png';"
 							alt={props.item.Name}
 						/>
-						{/* {/if} */}
 					</div>
 					<div className="ml-5 font-display">
-						{/* {#if !itemLoading} */}
 						<h1 className="text-white text-4xl font-black">
 							{props.item.Name}
 						</h1>
 						<h1 className="text-gray-400 text-lg font-black">
 							{props.item.Description !== null ? props.item.Description : ""}
 						</h1>
-						{/* {/if} */}
 					</div>
 				</div>
 				<div className="col-span-12 2xl:col-span-3 px-2 w-full h-[3.7rem] items-center justify-center">
