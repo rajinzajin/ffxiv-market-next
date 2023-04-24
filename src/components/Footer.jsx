@@ -1,15 +1,17 @@
+import Link from "next/link";
+
 export default function Footer() {
 	return (
 		<div className="grid grid-cols-8 mt-[4rem] gap-y-9 text-gray-300 font-[400]">
 			<div className="text-center 2xl:text-left col-span-12 2xl:col-span-5 font-body text-md border-gray-500 2xl:border-r">
 				Created by{" "}
-				<a
+				<Link
 					className="text-white"
 					href="https://github.com/rajinzajin"
 					target="_blank" rel="noreferrer"
 				>
 					RajinZajin
-				</a>
+				</Link>
 				<br />
 				XIV Market+ is not affiliated with SQUARE ENIX.
 				<br />
@@ -25,7 +27,7 @@ export default function Footer() {
 			<div className="col-span-12 2xl:col-span-1 border-gray-500 2xl:border-r flex items-center justify-center">
 				<div>
 					<div className="flex items-center justify-center mb-5">
-						<a
+						<Link
 							className="font-body hover:text-white"
 							href="https://github.com/rajinzajin/ffxiv-market-plus"
 							target="_blank" rel="noreferrer"
@@ -34,35 +36,35 @@ export default function Footer() {
 								<i className="fa fa-github text-3xl mr-3" />
 								Github
 							</div>
-						</a>
+						</Link>
 					</div>
 					<div className="flex justify-center">
-						<a className="font-body hover:text-white" href="/privacy-policy">
+						<Link className="font-body hover:text-white" href="/privacy-policy">
 							Privacy Policy
-						</a>
+						</Link>
 					</div>
 
 					<div className="flex justify-center mt-2">
-						<a
+						<Link
 							target="_blank"
 							className="font-body hover:text-white"
 							href="https://github.com/rajinzajin/ffxiv-market-plus/blob/main/LICENSE" rel="noreferrer"
 						>
 							MIT License
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
-			<div className="col-span-12 2xl:col-span-1 text-lg flex items-center justify-center">
+			<div className="col-span-12 2xl:col-span-1 text-lg flex text-center items-center justify-center">
 				<div>
 					<div>Powered by</div>
-					<a
+					<Link
 						href="https://universalis.app/"
 						className="hover:text-white font-bold"
 						target="_blank" rel="noreferrer"
 					>
 						Universalis
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
