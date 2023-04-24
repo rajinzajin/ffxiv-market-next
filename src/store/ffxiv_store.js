@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { dc_reducer } from "./reducers/data_center_reducer";
-import storage from "redux-persist/lib/storage";
 import { world_reducer } from "./reducers/world_reducer";
-import { persistStore } from "redux-persist";
-import { persistReducer } from "redux-persist";
 
 // create a slice
 export const ffxivslice = createSlice({
@@ -28,32 +25,16 @@ export const ffxivslice = createSlice({
 	},
 });
 
-const ffxivPersistConfig = {
-	key: "ffxiv",
-	storage: storage,
-	whitelist: [],
-};
-
-export const ffxiv_reducer = persistReducer(
-	ffxivPersistConfig,
-	ffxivslice.reducer
-);
-
 // config the store
 const store = configureStore({
 	reducer: {
-		ffxiv: ffxiv_reducer,
+		ffxiv: ffxivslice.reducer,
 		data_center: dc_reducer,
 		world: world_reducer,
-	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: false,
-		}),
+	}
 });
-const persiststore = persistStore(store);
 
-export { store, persiststore };
+export { store };
 // export the action
 export const {
 	addNewMarketActivity,

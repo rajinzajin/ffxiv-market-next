@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
 
 export const data_center_slice = createSlice({
 	name: "data_center",
@@ -18,16 +16,7 @@ export const data_center_slice = createSlice({
 	},
 });
 
-const dcPersistConfig = {
-	key: "data_center",
-	storage: storage,
-	whitelist: ["main_dc"],
-};
-
-export const dc_reducer = persistReducer(
-	dcPersistConfig,
-	data_center_slice.reducer
-);
+export const dc_reducer = data_center_slice.reducer
 
 export const { setDataCenters, setMainDC } = data_center_slice.actions;
 
