@@ -13,11 +13,15 @@ export default function Initializer() {
 	const dispatch = useDispatch();
 	const main_dc = useSelector(selectMainDC);
 	const [isLoading, setLoading] = useState(true);
-	
+
 	useEffect(() => {
 		loadInitialData(dispatch, main_dc);
 	}, [dispatch, main_dc]);
 
+	useEffect(() => {
+		const loader = document.getElementById("globalLoader");
+		if (isLoading == false) loader.remove();
+	}, [isLoading]);
 	async function loadInitialData(dispatch_, dc_) {
 		setLoading(true);
 
@@ -37,15 +41,5 @@ export default function Initializer() {
 
 		setLoading(false);
 	}
-
-	if (isLoading)
-		return (
-			<div className="fixed z-[50] w-full h-full bg-secondary">
-				<div className="fixed w-full h-full bg-custom-ffxiv">&nbsp;</div>
-				<div className="fixed w-full h-full flex items-center justify-center">
-					<h1 className="font-bold text-xl">LOADING . . .</h1>
-				</div>
-			</div>
-		);
-	else return <></>;
+	return <></>;
 }

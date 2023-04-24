@@ -10,6 +10,9 @@ export default function Document() {
         <link rel='preload' href='/img/tiny/ffxiv.webp' as='image' />
       </Head>
       <body className='text-white font-body bg-custom-ffxiv'>
+        <div id='globalLoader'>
+          <h1 className="font-bold text-xl">LOADING . . .</h1>
+        </div>
         <Main />
         <NextScript />
       </body>
