@@ -1,6 +1,7 @@
 import { formatNumberToGilString } from "@/lib/format_function";
 
 export default function ListingTable({ listings = [] }) {
+	console.log(listings)
 	if (listings.length == 0) return <></>;
 
 	return (
@@ -15,6 +16,10 @@ export default function ListingTable({ listings = [] }) {
 						<th scope="col" className="px-6 py-3">
 							{" "}
 							Quantity{" "}
+						</th>
+						<th scope="col" className="px-6 py-3">
+							{" "}
+							Quality{" "}
 						</th>
 						<th scope="col" className="px-6 py-3">
 							{" "}
@@ -35,6 +40,7 @@ export default function ListingTable({ listings = [] }) {
 								{listing.retainerName}
 							</th>
 							<td className="px-6 py-4"> {listing.quantity} </td>
+							<td className="px-6 py-4"> {listing.hq ? "High" : "Normal"} </td>
 							<td className="px-6 py-4 text-yellow-300">
 								{formatNumberToGilString(listing.pricePerUnit)}
 							</td>
