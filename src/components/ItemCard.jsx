@@ -7,10 +7,11 @@ import { selectMarketableItemsStore } from "@/store/ffxiv_store";
 import { useRouter } from "next/router";
 
 export default function ItemCard({ item_id }) {
+	const router = useRouter();
 	const [imageLoaded, setImageLoaded] = useState(false);
 	const [imageSrc, setImageSrc] = useState(getItemImageUrl(item_id));
-	const marketable_items = useSelector(selectMarketableItemsStore)
-	const router = useRouter()
+	const [checkPriceClicked, setCheckPriceClicked] = useState(false);
+	const marketable_items = useSelector(selectMarketableItemsStore);
 	useEffect(() => {
 		if (item_id == null) return;
 
@@ -26,6 +27,11 @@ export default function ItemCard({ item_id }) {
 		const image = new Image();
 		image.src = image_src;
 		image.onload = () => setImageLoaded(true);
+	}
+
+	function onCheckPriceClick(_id) {
+		router.push(`market/${_id}`);
+		setCheckPriceClicked(true);
 	}
 
 	if (item_id == null) return <></>;
@@ -50,14 +56,18 @@ export default function ItemCard({ item_id }) {
 					)}
 				</div>
 				<div className="ml-5">
-					<h1 className="text-white font-display font-bold text-xl">{marketable_items[item_id].en}</h1>
-					<button
-					onClick={() => router.push(`market/${item_id}`)}
-						type="button"
-						className="text-white hover:border-blue-500 font-body text-base font-semibold mt-3 border-2 border-white rounded-lg px-5 py-2"
-					>
-						Check Price
-					</button>
+					<h1 className="text-white font-display font-bold text-xl">
+						{marketable_items[item_id].en}
+					</h1>
+					{!checkPriceClicked ? (
+						<button
+							onClick={() => onCheckPriceClick(item_id)}
+							type="button"
+							className="text-white hover:border-blue-500 font-body text-base font-semibold mt-3 border-2 border-white rounded-lg px-5 py-2"
+						>
+							Check Price
+						</button>
+					) : <h1 className="mt-3 py-2">Loading . . .</h1>}
 				</div>
 			</div>
 		</>
