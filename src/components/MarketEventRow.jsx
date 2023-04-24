@@ -1,11 +1,11 @@
 import { getItemName } from "@/lib/item_utils";
 import { getWorld } from "@/lib/world";
-import { selectWorldsStore } from "@/store/ffxiv_store";
+import { selectWorlds } from "@/store/reducers/world_reducer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function MarketEventRow({ m_event }) {
-	const worlds = useSelector(selectWorldsStore)
+	const worlds = useSelector(selectWorlds)
 	const [world_name, setWorldName] = useState("");
 	useEffect(() => {
 		const world = getWorld(worlds, m_event.world)

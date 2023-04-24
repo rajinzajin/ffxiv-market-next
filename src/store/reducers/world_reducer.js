@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 
 export const world_slice = createSlice({
 	name: "world",
@@ -11,6 +13,17 @@ export const world_slice = createSlice({
 		},
 	},
 });
+
+const worldPersistConfig = {
+	key: "world",
+	storage: storage,
+	whitelist: [],
+};
+
+export const world_reducer = persistReducer(
+	worldPersistConfig,
+	world_slice.reducer
+);
 
 export const { setWorlds } = world_slice.actions;
 

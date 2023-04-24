@@ -1,4 +1,4 @@
-import store from "@/store/ffxiv_store";
+import {store} from "@/store/ffxiv_store";
 import {
 	selectDataCenters,
 	selectMainDC,

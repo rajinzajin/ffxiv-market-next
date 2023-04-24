@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { BSON } from "bson";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store, {
+import {
+	store,
 	selectMarketActivityStore,
 	addNewMarketActivity,
 } from "@/store/ffxiv_store";
