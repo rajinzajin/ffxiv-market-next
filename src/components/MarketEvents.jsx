@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { BSON } from "bson";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store, {
-	selectDCRedux,
 	selectMarketActivityStore,
 	addNewMarketActivity,
 } from "@/store/ffxiv_store";
 import MarketEventRow from "./MarketEventRow";
+import { selectMainDC } from "@/store/reducers/data_center_reducer";
 
 export default function MarketEventsWrapper() {
 	return (
@@ -17,7 +17,7 @@ export default function MarketEventsWrapper() {
 }
 export function MarketEvents() {
 	const dispatch = useDispatch();
-	const main_dc = useSelector(selectDCRedux);
+	const main_dc = useSelector(selectMainDC);
 	const addr = "wss://universalis.app/api/ws";
 	const marketEvents = useSelector(selectMarketActivityStore);
 	useEffect(() => {

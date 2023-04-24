@@ -1,4 +1,3 @@
-import axios from "axios";
 import item_names from "@/data/item_names_min.json"
 export function convertToArray(jsonObjects) {
 	var itemsArray = Object.entries(jsonObjects).map(([key, value]) => {

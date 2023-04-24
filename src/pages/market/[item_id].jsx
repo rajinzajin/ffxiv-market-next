@@ -6,7 +6,7 @@ import { getItem } from "@/database/item_db";
 import { filterArray } from "@/lib/array_function";
 import { getItemImageUrl } from "@/lib/item_utils";
 import { getHighestPriceItem, getLowestPriceItem } from "@/lib/listings";
-import { selectDCRedux } from "@/store/ffxiv_store";
+import { selectMainDC } from "@/store/reducers/data_center_reducer";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 
 export default function Market({ item }) {
 	const router = useRouter();
-	const main_dc = useSelector(selectDCRedux);
+	const main_dc = useSelector(selectMainDC);
 	const item_id_query = router.query.item_id;
 	const [marketLoading, setMarketLoading] = useState(true);
 	const [

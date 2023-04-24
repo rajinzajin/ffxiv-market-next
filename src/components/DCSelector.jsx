@@ -1,6 +1,10 @@
-import { getDCs, getMainDC, setMainDC } from "@/lib/dc";
-import store, { selectDCRedux, selectDataCentersStore, setDCRedux } from "@/store/ffxiv_store";
-import { useEffect, useState } from "react";
+import store from "@/store/ffxiv_store";
+import {
+	selectDataCenters,
+	selectMainDC,
+	setMainDC,
+} from "@/store/reducers/data_center_reducer";
+import { useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
 export default function DCSelector() {
@@ -11,17 +15,15 @@ export default function DCSelector() {
 	);
 }
 export function DCSelectorComponent() {
-	const main_dc = useSelector(selectDCRedux);
-	const dataCenters = useSelector(selectDataCentersStore)
+	const main_dc = useSelector(selectMainDC);
+	const dataCenters = useSelector(selectDataCenters);
 	const dispatch = useDispatch();
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 
 	function onSelectDC(dc) {
-		setMainDC(dc).then(() => {
-			dispatch(setDCRedux(dc));
-		});
+		dispatch(setMainDC(dc));
 	}
-	
+
 	if (main_dc == null) return <></>;
 
 	return (

@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
-import localforage from "localforage";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "@/store/ffxiv_store";
@@ -9,13 +8,6 @@ import Initializer from "@/components/Initializer";
 import Footer from "@/components/Footer";
 export default function App({ Component, pageProps }) {
 	useEffect(() => {
-		localforage.config({
-			driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
-			name: "xivplus",
-			version: 1.0,
-			storeName: "xivplus", // Should be alphanumeric, with underscores.
-			description: "xiv market plus localstorage database",
-		});
 	}, []);
 
 	return (

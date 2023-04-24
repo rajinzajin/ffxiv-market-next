@@ -6,7 +6,7 @@ export default function Footer() {
 				<a
 					className="text-white"
 					href="https://github.com/rajinzajin"
-					target="_blank"
+					target="_blank" rel="noreferrer"
 				>
 					RajinZajin
 				</a>
@@ -28,7 +28,7 @@ export default function Footer() {
 						<a
 							className="font-body hover:text-white"
 							href="https://github.com/rajinzajin/ffxiv-market-plus"
-							target="_blank"
+							target="_blank" rel="noreferrer"
 						>
 							<div className="flex items-center">
 								<i className="fa fa-github text-3xl mr-3" />
@@ -46,7 +46,7 @@ export default function Footer() {
 						<a
 							target="_blank"
 							className="font-body hover:text-white"
-							href="https://github.com/rajinzajin/ffxiv-market-plus/blob/main/LICENSE"
+							href="https://github.com/rajinzajin/ffxiv-market-plus/blob/main/LICENSE" rel="noreferrer"
 						>
 							MIT License
 						</a>
@@ -59,7 +59,7 @@ export default function Footer() {
 					<a
 						href="https://universalis.app/"
 						className="hover:text-white font-bold"
-						target="_blank"
+						target="_blank" rel="noreferrer"
 					>
 						Universalis
 					</a>

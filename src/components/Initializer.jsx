@@ -1,10 +1,9 @@
-import { getLocalStorageMainDC } from "@/lib/dc";
+import { setMarketableItemsStore } from "@/store/ffxiv_store";
 import {
-	setDCRedux,
-	setDataCentersStore,
-	setMarketableItemsStore,
-	setWorldsStore,
-} from "@/store/ffxiv_store";
+	setDataCenters,
+	setMainDC,
+} from "@/store/reducers/data_center_reducer";
+import { setWorlds } from "@/store/reducers/world_reducer";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -20,16 +19,16 @@ export default function Initializer() {
 		setLoading(true);
 
 		const data_centers = await axios("/json/data_centers.json");
-		dispatch_(setDataCentersStore(data_centers.data));
+		dispatch_(setDataCenters(data_centers.data));
 
 		const worlds = await axios("/json/worlds.json");
-		dispatch_(setWorldsStore(worlds.data));
+		dispatch_(setWorlds(worlds.data));
 
-		const main_dc = await getLocalStorageMainDC(data_centers.data);
-		dispatch_(setDCRedux(main_dc));
+		const main_dc = data_centers.data[0];
+		dispatch_(setMainDC(main_dc));
 
-		const marketable_items = await axios("/json/marketable_items.json")
-		dispatch_(setMarketableItemsStore(marketable_items.data))
+		const marketable_items = await axios("/json/marketable_items.json");
+		dispatch_(setMarketableItemsStore(marketable_items.data));
 
 		setLoading(false);
 	}

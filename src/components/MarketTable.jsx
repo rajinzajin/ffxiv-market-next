@@ -1,12 +1,13 @@
 import { getLowestPriceItem } from "@/lib/listings";
-import { selectDCRedux, selectWorldsStore } from "@/store/ffxiv_store";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getWorld } from "@/lib/world";
 import { formatNumberToGilString } from "@/lib/format_function";
+import { selectMainDC } from "@/store/reducers/data_center_reducer";
+import { selectWorlds } from "@/store/reducers/world_reducer";
 export default function MarketTable({ listings = [] }) {
-	const main_dc = useSelector(selectDCRedux);
-	const all_worlds = useSelector(selectWorldsStore);
+	const main_dc = useSelector(selectMainDC);
+	const all_worlds = useSelector(selectWorlds);
 	const [isHqTable, setIsHqTable] = useState(false);
 	const [selectedPrices, setSelectedPrices] = useState([]);
 	const selectedStyle =
