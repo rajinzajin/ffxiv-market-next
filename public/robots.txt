@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://xivplus.com
+
+# Sitemaps
+Sitemap: https://xivplus.com/sitemap.xml
