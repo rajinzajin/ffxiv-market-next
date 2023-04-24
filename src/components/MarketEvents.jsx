@@ -57,8 +57,7 @@ export function MarketEvents() {
 				<thead className="text-xl text-center font-display text-white bg-item">
 					<tr>
 						<th scope="col" className="px-6 py-3 font-[400]">
-							{" "}
-							Recent activity - {main_dc != null && main_dc.name}
+							Data Center - {main_dc != null && main_dc.name}
 						</th>
 					</tr>
 				</thead>
