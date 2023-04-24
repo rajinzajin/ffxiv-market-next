@@ -12,6 +12,7 @@ export const ffxivslice = createSlice({
 	initialState: {
 		market_activity: [],
 		marketable_items: {},
+		selected_market_event: {},
 	},
 	reducers: {
 		addNewMarketActivity: (state, action) => {
@@ -20,6 +21,9 @@ export const ffxivslice = createSlice({
 		},
 		setMarketableItemsStore: (state, action) => {
 			state.marketable_items = action.payload;
+		},
+		setSelectedMarketEvent: (state, action) => {
+			state.selected_market_event = action.payload;
 		},
 	},
 });
@@ -51,9 +55,14 @@ const persiststore = persistStore(store);
 
 export { store, persiststore };
 // export the action
-export const { addNewMarketActivity, setMarketableItemsStore } =
-	ffxivslice.actions;
+export const {
+	addNewMarketActivity,
+	setMarketableItemsStore,
+	setSelectedMarketEvent,
+} = ffxivslice.actions;
 
 export const selectMarketActivityStore = (state) => state.ffxiv.market_activity;
 export const selectMarketableItemsStore = (state) =>
 	state.ffxiv.marketable_items;
+export const selectSelectedMarketEvent = (state) =>
+	state.ffxiv.selected_market_event;
