@@ -15,16 +15,19 @@ export default function Initializer() {
 	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
-		loadInitialData(dispatch, main_dc);
-	}, [dispatch, main_dc]);
+		if (isLoading) {
+			loadInitialData(dispatch, main_dc);
+		}
+	});
 
 	useEffect(() => {
-		const loader = document.getElementById("globalLoader");
-		if (isLoading == false) loader.remove();
+		if (isLoading == false) {
+			const loader = document.getElementById("globalLoader");
+			loader.remove();
+		}
 	}, [isLoading]);
-	async function loadInitialData(dispatch_, dc_) {
-		setLoading(true);
 
+	async function loadInitialData(dispatch_, dc_) {
 		const data_centers = await axios("/json/data_centers.json");
 		dispatch_(setDataCenters(data_centers.data));
 
