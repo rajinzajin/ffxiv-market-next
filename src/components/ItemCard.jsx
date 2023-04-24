@@ -38,7 +38,7 @@ export default function ItemCard({ item_id }) {
 
 	return (
 		<>
-			<div className="w-full flex p-5 bg-primary rounded-lg items-center mb-10">
+			<div className="w-full flex p-5 bg-primary rounded-lg items-center">
 				<div className="w-20 h-20">
 					{imageLoaded && (
 						<NextImage
