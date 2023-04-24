@@ -13,11 +13,12 @@ export default function Initializer() {
 	const dispatch = useDispatch();
 	const main_dc = useSelector(selectMainDC);
 	const [isLoading, setLoading] = useState(true);
+	
 	useEffect(() => {
-		loadInitialData(dispatch);
-	}, [dispatch]);
+		loadInitialData(dispatch, main_dc);
+	}, [dispatch, main_dc]);
 
-	async function loadInitialData(dispatch_) {
+	async function loadInitialData(dispatch_, dc_) {
 		setLoading(true);
 
 		const data_centers = await axios("/json/data_centers.json");
@@ -27,7 +28,7 @@ export default function Initializer() {
 		dispatch_(setWorlds(worlds.data));
 
 		//if main dc not detected from redux persist, set first data center as main dc
-		if (Object.keys(main_dc).length == 0) {
+		if (Object.keys(dc_).length == 0) {
 			dispatch_(setMainDC(data_centers.data[0]));
 		}
 
