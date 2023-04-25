@@ -21,27 +21,22 @@
   font-family: 'Material Symbols Outlined';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/Material-Symbols-Outlined.woff2) format('woff2');
+  src: url(https://raw.githubusercontent.com/rajinzajin/ffxiv-market-next/main/public/fonts/Material-Symbols-Outlined.woff2) format('woff2');
 }
 
 @font-face {
   font-family: Chelsea Market;
-  src: url(/fonts/ChelseaMarket-Regular.ttf) format("opentype");
+  src: url(https://raw.githubusercontent.com/rajinzajin/ffxiv-market-next/main/public/fonts/ChelseaMarket-Regular.ttf) format("opentype");
 }
 
 @font-face {
   font-family: Catamaran;
-  src: url(/fonts/catamaran.woff2) format("woff2");
+  src: url(https://raw.githubusercontent.com/rajinzajin/ffxiv-market-next/main/public/fonts/catamaran.woff2) format("woff2");
 }
 
 @font-face {
   font-family: Poppins;
-  src: url(/fonts/Poppins-Regular.ttf) format("opentype");
-}
-
-@font-face {
-  font-family: Poppins;
-  src: url(/fonts/Poppins-Regular.ttf) format("opentype");
+  src: url(https://raw.githubusercontent.com/rajinzajin/ffxiv-market-next/main/public/fonts/Poppins-Regular.ttf) format("opentype");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -59,12 +54,6 @@ body {
 #sidebar {
   background-image: linear-gradient(rgba(var(--rgb-primary), var(--bg-ffxiv-opacity)), rgba(var(--rgb-primary), var(--bg-ffxiv-opacity))), url(/img/tiny/ffxiv-2.jpg);
   background-position: 73% 15%;
-}
-
-.bg-custom-ffxiv {
-  background-image: linear-gradient(rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity)), rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity))), url(/img/tiny/ffxiv.webp);
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .loader {
@@ -105,8 +94,4 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-
-  background-image: linear-gradient(rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity)), rgba(var(--rgb-secondary), var(--bg-ffxiv-opacity))), url(/img/tiny/ffxiv.webp);
-  background-size: cover;
-  background-repeat: no-repeat;
 }
