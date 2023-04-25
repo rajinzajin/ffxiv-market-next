@@ -56,8 +56,3 @@ export function separateHqNq(entries) {
 		nqList,
 	};
 }
-
-export function getItemBulkJson() {
-	const { items } = require("@/data/item_bulk.js");
-	return items;
-}
