@@ -1,4 +1,4 @@
-import item_names from "@/data/item_names_min.json"
+import item_names from "@/data/item_names_min.json";
 export function convertToArray(jsonObjects) {
 	var itemsArray = Object.entries(jsonObjects).map(([key, value]) => {
 		return {
@@ -30,7 +30,7 @@ export function getItemNameByID(list_item, item_id) {
 
 	return list_item[item_id].en;
 }
-export function getItemName(item_id){
+export function getItemName(item_id) {
 	if (item_names[item_id] == null) return "";
 
 	return item_names[item_id].en;
@@ -57,3 +57,7 @@ export function separateHqNq(entries) {
 	};
 }
 
+export function getItemBulkJson() {
+	const { items } = require("@/data/item_bulk.js");
+	return items;
+}

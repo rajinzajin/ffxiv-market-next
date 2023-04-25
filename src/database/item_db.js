@@ -9,3 +9,10 @@ export async function getItem(_id) {
 	});
 	return data;
 }
+
+export async function getItemBulk() {
+	const data = await prisma.item.findMany({
+		select: { id: true, Name: true, Description: true },
+	});
+	return data;
+}
