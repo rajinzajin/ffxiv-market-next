@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
 
 env:
+  SKIP_BUILD_STATIC_GENERATION: true
   DATABASE_URL: "mongodb://mongo:Q8DZJ2mG0KYjdDm8Ne04@containers-us-west-185.railway.app:7638/ffxiv?authSource=admin"
   
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
