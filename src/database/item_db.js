@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-export async function getItem(_id) {
+exports.getItem = async function(_id) {
 	const data = await prisma.item.findFirst({
 		where: { id: _id },
 		select: { id: true, Name: true, Description: true },
@@ -10,9 +9,9 @@ export async function getItem(_id) {
 	return data;
 }
 
-export async function getItemBulk() {
+exports.getItemBulk = async function () {
 	const data = await prisma.item.findMany({
-		select: { id: true, Name: true, Description: true },
+		select: { id: true, Name: true, Description: true, ClassJobCategory: true },
 	});
 	return data;
-}
+};

@@ -1,6 +1,6 @@
-import { getItemBulk } from "../src/database/item_db.js";
-import fs from "fs";
+const { getItemBulk } = require("../src/database/item_db.js");
+const fs = require("fs");
 
-var items = await getItemBulk()
-
-fs.writeFileSync("./src/data/item_bulk.json", JSON.stringify(items));
+getItemBulk().then((items) => {
+	fs.writeFileSync("./src/data/item_bulk.json", JSON.stringify(items));
+});

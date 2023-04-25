@@ -4,7 +4,7 @@ import LowHighPriceCard from "@/components/LowHighPriceCard";
 import MarketTable from "@/components/MarketTable";
 import { getItem } from "@/database/item_db";
 import { filterArray } from "@/lib/array_function";
-import { getItemBulkJson, getItemImageUrl } from "@/lib/item_utils";
+import { getItemImageUrl } from "@/lib/item_utils";
 import { getHighestPriceItem, getLowestPriceItem } from "@/lib/listings";
 import { selectMainDC } from "@/store/reducers/data_center_reducer";
 import axios from "axios";
@@ -148,8 +148,8 @@ export async function getStaticProps({ params }) {
 		const data = await getItem(parseInt(params.item_id));
 		return { props: { item: data } };
 	} else {
-		const item_json = getItemBulkJson();
-		const item = filterArray(item_json, { id: parseInt(params.item_id) })[0];
+		const { items } = require("@/data/item_bulk");
+		const item = items.find((val) => val.id == parseInt(params.item_id));
 		return { props: { item: item } };
 	}
 }
