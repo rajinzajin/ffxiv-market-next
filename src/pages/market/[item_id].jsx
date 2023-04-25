@@ -4,7 +4,7 @@ import LowHighPriceCard from "@/components/LowHighPriceCard";
 import MarketTable from "@/components/MarketTable";
 import { getItem } from "@/database/item_db";
 import { filterArray } from "@/lib/array_function";
-import { getItemImageUrl } from "@/lib/item_utils";
+import { getItemBulkJson, getItemImageUrl } from "@/lib/item_utils";
 import { getHighestPriceItem, getLowestPriceItem } from "@/lib/listings";
 import { selectMainDC } from "@/store/reducers/data_center_reducer";
 import axios from "axios";
@@ -143,19 +143,21 @@ export default function Market({ item }) {
 }
 
 export async function getStaticProps({ params }) {
-	const data = await getItem(parseInt(params.item_id));
-	return { props: { item: data } };
+	if (process.env.SKIP_BUILD_STATIC_GENERATION == "true") {
+		//ON DEMAND GET DATA
+		const data = await getItem(parseInt(params.item_id));
+		return { props: { item: data } };
+	} else {
+		const item_json = getItemBulkJson();
+		const item = filterArray(item_json, { id: parseInt(params.item_id) })[0];
+		return { props: { item: item } };
+	}
 }
 
 export async function getStaticPaths() {
 	if (process.env.SKIP_BUILD_STATIC_GENERATION == "true") {
 		return {
-			paths: [
-				{ params: { item_id: "3" } },
-				{ params: { item_id: "4" } },
-				{ params: { item_id: "5" } },
-				{ params: { item_id: "6" } },
-			],
+			paths: [],
 			fallback: "blocking",
 		};
 	}
