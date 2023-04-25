@@ -29,7 +29,7 @@ export default function Footer() {
 					<div className="flex items-center justify-center mb-5">
 						<Link
 							className="font-body hover:text-white"
-							href="https://github.com/rajinzajin/ffxiv-market-plus"
+							href="https://github.com/rajinzajin/ffxiv-market-next"
 							target="_blank" rel="noreferrer"
 						>
 							<div className="flex items-center">
