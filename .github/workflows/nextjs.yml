@@ -12,6 +12,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  NEXT_PUBLIC_ASSET_PATH: ${{ vars.NEXT_PUBLIC_ASSET_PATH }}
+  SKIP_BUILD_STATIC_GENERATION: ${{ vars.SKIP_BUILD_STATIC_GENERATION }}
+  
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
