@@ -154,6 +154,7 @@ export async function getStaticPaths() {
 				{ params: { item_id: "3" } },
 				{ params: { item_id: "4" } },
 				{ params: { item_id: "5" } },
+				{ params: { item_id: "6" } },
 			],
 			fallback: "blocking",
 		};
