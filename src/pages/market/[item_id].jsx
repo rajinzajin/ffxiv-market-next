@@ -133,7 +133,9 @@ export default function Market({ item }) {
 					<h1 className="text-white w-full text-2xl font-[700] text-center">
 						&nbsp;
 					</h1>
-					<div className="mt-4"><MarketTable listings={listings} /></div>
+					<div className="mt-4">
+						<MarketTable listings={listings} />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -148,7 +150,11 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
 	if (process.env.SKIP_BUILD_STATIC_GENERATION == "true") {
 		return {
-			paths: [],
+			paths: [
+				{ params: { item_id: "3" } },
+				{ params: { item_id: "4" } },
+				{ params: { item_id: "5" } },
+			],
 			fallback: "blocking",
 		};
 	}
