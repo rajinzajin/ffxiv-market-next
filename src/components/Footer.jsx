@@ -48,7 +48,7 @@ export default function Footer() {
 						<Link
 							target="_blank"
 							className="font-body hover:text-white"
-							href="https://github.com/rajinzajin/ffxiv-market-plus/blob/main/LICENSE" rel="noreferrer"
+							href="https://github.com/rajinzajin/ffxiv-market-next/blob/main/LICENSE" rel="noreferrer"
 						>
 							MIT License
 						</Link>
