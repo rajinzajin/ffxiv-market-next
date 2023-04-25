@@ -1,7 +1,6 @@
 import { formatNumberToGilString } from "@/lib/format_function";
 
 export default function ListingTable({ listings = [] }) {
-	console.log(listings)
 	if (listings.length == 0) return <></>;
 
 	return (
