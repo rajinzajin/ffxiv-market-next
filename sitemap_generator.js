@@ -6,7 +6,7 @@ function generateSitemapXml(keys) {
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
   for (const key of keys) {
-    const url = `https://xivplus.com/market/${key}`;
+    const url = `https://www.xivplus.com/market/${key}`;
     xml += `  <url>\n    <loc>${url}</loc>\n  </url>\n`;
   }
   
@@ -16,7 +16,7 @@ function generateSitemapXml(keys) {
 }
 
 function generateRobotsTxt() {
-  const content = `User-agent: *\nSitemap: https://xivplus.com/sitemap.xml`;
+  const content = `User-agent: *\nSitemap: https://www.xivplus.com/sitemap.xml`;
   
   fs.writeFileSync('public/robots.txt', content);
 }

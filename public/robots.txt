@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://xivplus.com/sitemap.xml
+Sitemap: https://www.xivplus.com/sitemap.xml
