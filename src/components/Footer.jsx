@@ -4,14 +4,14 @@ export default function Footer() {
 	return (
 		<div className="grid grid-cols-8 mt-[4rem] gap-y-9 text-gray-300 font-[400]">
 			<div className="text-center 2xl:text-left col-span-12 2xl:col-span-5 font-body text-md border-gray-500 2xl:border-r">
-				Created by{" "}
+				{/* Created by{" "}
 				<Link
 					className="text-white"
 					href="https://github.com/rajinzajin"
 					target="_blank" rel="noreferrer"
 				>
 					RajinZajin
-				</Link>
+				</Link> */}
 				<br />
 				XIV Market+ is not affiliated with SQUARE ENIX.
 				<br />
@@ -26,7 +26,7 @@ export default function Footer() {
 
 			<div className="col-span-12 2xl:col-span-1 border-gray-500 2xl:border-r flex items-center justify-center">
 				<div>
-					<div className="flex items-center justify-center mb-5">
+					{/* <div className="flex items-center justify-center mb-5">
 						<Link
 							className="font-body hover:text-white"
 							href="https://github.com/rajinzajin/ffxiv-market-next"
@@ -37,14 +37,14 @@ export default function Footer() {
 								Github
 							</div>
 						</Link>
-					</div>
+					</div> */}
 					<div className="flex justify-center">
 						<Link className="font-body hover:text-white" href="/privacy-policy">
 							Privacy Policy
 						</Link>
 					</div>
 
-					<div className="flex justify-center mt-2">
+					{/* <div className="flex justify-center mt-2">
 						<Link
 							target="_blank"
 							className="font-body hover:text-white"
@@ -52,7 +52,7 @@ export default function Footer() {
 						>
 							MIT License
 						</Link>
-					</div>
+					</div> */}
 				</div>
 			</div>
 			<div className="col-span-12 2xl:col-span-1 text-lg flex text-center items-center justify-center">
